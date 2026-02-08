@@ -1,0 +1,44 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-redeploy-the-current-application-build-to-the-internet-computer-and-provide-a-fresh-user-accessible-deployment-url-that-loads-the-app-successfully-in-a-browser",
+      "featureTitle": "Redeploy the current application build to the Internet Computer and provide a fresh, user-accessible deployment URL that loads the app successfully in a browser.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/components/system/AppErrorBoundary.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-visible-non-blank-initial-loading-fallback-so-that-if-the-react-bundle-fails-to-load-or-takes-time-to-initialize-the-user-sees-an-on-page-message-instead-of-an-empty-screen",
+      "featureTitle": "Add a visible non-blank initial loading fallback so that if the React bundle fails to load or takes time to initialize, the user sees an on-page message instead of an empty screen.",
+      "files": [
+        "frontend/index.html"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

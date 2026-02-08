@@ -1,0 +1,58 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Redeploy-safe loading UX and non-blank startup fallbacks",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Harden the frontend startup experience so the deployed app reliably shows visible UI (or a readable fallback) instead of a blank page during/after redeploy.",
+      "acceptanceCriteria": [
+        "A new deployment is executed successfully.",
+        "A new deployment URL is produced and shared.",
+        "Opening the new URL in a browser shows the PharmaQMS Hunter UI (not a blank page), with the header and at least the main layout rendered."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add a non-empty initial #root placeholder (branded loading message) that renders immediately before React loads; include a <noscript> message so users without JS don’t see a blank screen; add a tiny inline error handler that replaces the placeholder text if the main module fails to load (e.g., blocked asset), preserving a readable on-page failure state. Wire the generated branding assets into the placeholder using frontend/public/assets/generated/pharmaqms-hunter-wordmark.dim_1200x300.png and/or frontend/public/assets/generated/pharmaqms-hunter-logo.dim_512x512.png."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Wrap the App render with a top-level Error Boundary so runtime exceptions during initial render show a user-visible fallback instead of a blank page; ensure the fallback replaces/updates the initial placeholder content once React mounts."
+        },
+        {
+          "path": "frontend/src/components/system/AppErrorBoundary.tsx",
+          "operation": "create",
+          "description": "Create a small React Error Boundary component that displays a readable recovery message (and optional basic instructions like refresh/retry) when the app crashes during initial render; keep styling minimal and consistent with existing Tailwind setup."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add minimal global styles for the pre-React loading placeholder (e.g., centering, readable typography, background/foreground tokens) so the initial message is visible and consistent with the app theme."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add a visible, non-blank initial loading fallback that remains visible even if the React bundle is slow to initialize or fails to load.",
+      "acceptanceCriteria": [
+        "On first load, before React hydrates/renders, the page shows a readable loading placeholder in the root container.",
+        "If the JS bundle fails to load (e.g., blocked asset), the user still sees the placeholder rather than a completely blank page."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Populate the #root element with an immediate loading placeholder (text + optional branding image) and include a <noscript> fallback; add a small inline script that listens for resource/module load errors and updates the placeholder to a clear ‘failed to load’ message so the screen is never empty."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "After React mounts successfully, remove/replace the initial placeholder by rendering the normal app; ensure any initialization errors are caught by the Error Boundary so users still see a message."
+        }
+      ]
+    }
+  ]
+}

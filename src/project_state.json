@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [
+    "Deployed app page is not loading (deployment URL may be unreachable or deployment incomplete); user requested redeploy."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-redeploy-the-current-application-build-to-the-internet-computer-and-provide-a-fresh-user-accessible-deployment-url-that-loads-the-app-successfully-in-a-browser",
+      "title": "Redeploy the current application build to the Internet Computer and provide a fresh, user-accessible deployment URL that loads the app successfully in a browser.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-visible-non-blank-initial-loading-fallback-so-that-if-the-react-bundle-fails-to-load-or-takes-time-to-initialize-the-user-sees-an-on-page-message-instead-of-an-empty-screen",
+      "title": "Add a visible non-blank initial loading fallback so that if the React bundle fails to load or takes time to initialize, the user sees an on-page message instead of an empty screen.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [],
+  "projectName": "Redeploy the app and prevent blank-page load failures",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

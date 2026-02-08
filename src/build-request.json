@@ -1,0 +1,63 @@
+{
+  "kind": "build_request",
+  "title": "Redeploy the app and prevent blank-page load failures",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Redeploy the current application build to the Internet Computer and provide a fresh, user-accessible deployment URL that loads the app successfully in a browser.",
+      "target": "unknown",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Deploy again"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new deployment is executed successfully.",
+        "A new deployment URL is produced and shared.",
+        "Opening the new URL in a browser shows the PharmaQMS Hunter UI (not a blank page), with the header and at least the main layout rendered."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a visible non-blank initial loading fallback so that if the React bundle fails to load or takes time to initialize, the user sees an on-page message instead of an empty screen.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "When im opening the app its not loading the page."
+        ]
+      },
+      "acceptanceCriteria": [
+        "On first load, before React hydrates/renders, the page shows a readable loading placeholder in the root container.",
+        "If the JS bundle fails to load (e.g., blocked asset), the user still sees the placeholder rather than a completely blank page."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit any files under frontend/src/components/ui or any path listed in SYSTEM_CONTEXT.frontend.immutablePaths."
+  ],
+  "nonGoals": [
+    "Adding new product features unrelated to deployment stability.",
+    "Changing authentication providers (Internet Identity remains the only auth option)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

@@ -1,2 +1,3 @@
-# pharmaqms-hunter
-Exported from Caffeine project: Redeploy the app and prevent blank-page load failures
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`
